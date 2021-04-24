@@ -29,6 +29,7 @@ resource "aws_security_group" "rds_sg" {
 
 module "rds" {
   source = "./modules/rds"
+  identifier           = "main-rds"
   allocated_storage    = 10
   engine               = "mysql"
   engine_version       = "5.7"

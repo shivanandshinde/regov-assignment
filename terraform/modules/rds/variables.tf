@@ -1,3 +1,6 @@
+variable "identifier" {
+  type = string
+}
 variable "allocated_storage" {
   type = number
   default = 10

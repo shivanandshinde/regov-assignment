@@ -24,6 +24,7 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 }
 
 resource "aws_db_instance" "rds" {
+  identifier           = var.identifier
   allocated_storage    = var.allocated_storage
   engine               = var.engine
   engine_version       = var.engine_version
