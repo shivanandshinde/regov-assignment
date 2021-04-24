@@ -1,5 +1,10 @@
 module "vpc" {
   source = "./modules/vpc"
+  cidr   = "172.18.0.0/16"
+  
+  tags = {
+    Name = "main-vpc"
+  }
 }
 
 module "rds" {
