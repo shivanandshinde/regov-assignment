@@ -7,6 +7,26 @@ module "vpc" {
   }
 }
 
+resource "aws_security_group" "rds_sg" {
+  name = "rds_sg"
+  vpc_id = module.vpc.vpc_id
+  ingress {
+    description      = "TLS from VPC"
+    from_port        = 3306
+    to_port          = 3306
+    protocol         = "tcp"
+    cidr_blocks      = [module.vpc.vpc_cidr_block]
+  }
+  
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+}
+
 module "rds" {
   source = "./modules/rds"
   allocated_storage    = 10
@@ -17,6 +37,7 @@ module "rds" {
   username             = "admin"
   parameter_group_name = "default.mysql5.7"
   subnet_ids           = [module.vpc.private_subnet1_id, module.vpc.private_subnet2_id]
+  vpc_security_group_ids = [aws_security_group.rds_sg.id]
 }
 
 module "s3" {

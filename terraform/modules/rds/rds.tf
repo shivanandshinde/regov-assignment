@@ -23,10 +23,6 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   }
 }
 
-resource "aws_security_group" "rds_sg" {
-  
-}
-
 resource "aws_db_instance" "rds" {
   allocated_storage    = var.allocated_storage
   engine               = var.engine
@@ -38,6 +34,6 @@ resource "aws_db_instance" "rds" {
   parameter_group_name = var.parameter_group_name
   skip_final_snapshot  = true
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
-  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+  vpc_security_group_ids = var.vpc_security_group_ids
 
 }

@@ -13,7 +13,6 @@ resource "aws_subnet" "public_subnet" {
   cidr_block = var.subnet_ids[0]
   tags = {
     Name = "public-subnet"
-    scope = "public"
   }
 }
 
@@ -22,7 +21,6 @@ resource "aws_subnet" "private_subnet1" {
   cidr_block = var.subnet_ids[1]
   tags = {
     Name = "private-subnet1"
-    scope = "private"
   }
 }
 
@@ -31,7 +29,6 @@ resource "aws_subnet" "private_subnet2" {
   cidr_block = var.subnet_ids[2]
   tags = {
     Name = "private-subnet2"
-    scope = "private"
   }
 }
 
