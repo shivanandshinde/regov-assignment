@@ -1,7 +1,7 @@
 module "vpc" {
   source = "./modules/vpc"
   cidr   = "172.18.0.0/16"
-  
+
   tags = {
     Name = "main-vpc"
   }
@@ -9,6 +9,13 @@ module "vpc" {
 
 module "rds" {
   source = "./modules/rds"
+  allocated_storage    = 10
+  engine               = "mysql"
+  engine_version       = "5.7"
+  instance_class       = "db.t3.micro"
+  name                 = "mydb"
+  username             = "admin"
+  parameter_group_name = "default.mysql5.7"
 }
 
 module "s3" {
