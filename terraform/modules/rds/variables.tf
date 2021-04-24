@@ -23,7 +23,16 @@ variable "name" {
   default = "myrds"
 }
 
+variable "username" {
+  type = string
+  default = "admin"
+}
+
 variable "parameter_group_name" {
   type = string
   default = "default.mysql5.7"
+}
+
+variable "subnet_ids" {
+  type = list
 }

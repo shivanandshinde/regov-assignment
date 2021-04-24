@@ -14,14 +14,30 @@ resource "aws_secretsmanager_secret_version" "secret" {
   secret_string = random_password.password.result
 }
 
+resource "aws_db_subnet_group" "rds_subnet_group" {
+  name       = "rds_subnet_group"
+  subnet_ids = var.subnet_ids
+
+  tags = {
+    Name = "DB subnet group"
+  }
+}
+
+resource "aws_security_group" "rds_sg" {
+  
+}
+
 resource "aws_db_instance" "rds" {
-  allocated_storage    = 10
-  engine               = "mysql"
-  engine_version       = "5.7"
-  instance_class       = "db.t3.micro"
-  name                 = "mydb"
-  username             = "admin"
+  allocated_storage    = var.allocated_storage
+  engine               = var.engine
+  engine_version       = var.engine_version
+  instance_class       = var.instance_class
+  name                 = var.name
+  username             = var.username
   password             = random_password.password.result
-  parameter_group_name = "default.mysql5.7"
+  parameter_group_name = var.parameter_group_name
   skip_final_snapshot  = true
+  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
+  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+
 }

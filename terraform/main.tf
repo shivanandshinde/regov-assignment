@@ -16,6 +16,7 @@ module "rds" {
   name                 = "mydb"
   username             = "admin"
   parameter_group_name = "default.mysql5.7"
+  subnet_ids           = [module.vpc.private_subnet1_id, module.vpc.private_subnet2_id]
 }
 
 module "s3" {
