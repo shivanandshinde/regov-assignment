@@ -6,9 +6,9 @@
 - CI/CD pipelines also left out due to time constraint.
 - multi-account deployment is left out due to very less experience in that area.
 
-## Setup
-- Install terraform (version >= 0.12)
-- Install awscli and create aws profile
+## Setup on linux os
+- Install terraform (version >= 0.12) - https://learn.hashicorp.com/tutorials/terraform/install-cli
+- Install awscli and create aws profile - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
 
 `aws configure --profile test`
 
