@@ -1,7 +1,10 @@
 # regov-assignment
 
 ## Desciption
-
+- This will create the infrastructure as provided in question 2. 
+- Amazon cognito and Appsync are left out due to time constraint. 
+- CI/CD pipelines also left out due to time constraint.
+- multi-account deployment is left out due to very less experience in that area.
 
 ## Setup
 - Install terraform (version >= 0.12)
