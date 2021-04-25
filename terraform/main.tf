@@ -41,12 +41,20 @@ module "rds" {
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
 }
 
-module "s3" {
-  source = "./modules/s3"
+resource "s3" {
+  bucket_prefix = "test-bucket-regov"
+  acl = "private"
 }
 
-module "dynamodb" {
-  source = "./modules/dynamodb"
+resource "aws_dynamodb_table" "test-table" {
+  name           = "test-db"
+  hash_key       = "id"
+  billing_mode   = "PAY_PER_REQUEST"
+
+  attribute {
+    name = "id"
+    type = "S"
+  }
 }
 
 module "lambda" {
