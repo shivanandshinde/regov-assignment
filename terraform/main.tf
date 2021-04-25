@@ -41,7 +41,7 @@ module "rds" {
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
 }
 
-resource "s3" {
+resource "aws_s3_bucket" "test-bucket"{
   bucket_prefix = "test-bucket-regov"
   acl = "private"
 }
@@ -59,8 +59,5 @@ resource "aws_dynamodb_table" "test-table" {
 
 module "lambda" {
   source = "./modules/lambda"
-}
-
-module "cloudwatch" {
-  source = "./modules/cloudwatch"
+  function_name = "test-function"
 }
